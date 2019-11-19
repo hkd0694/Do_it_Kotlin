@@ -12,18 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4.5"
-        android:layout_margin="15dp"
-        >
+        android:padding="15dp">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/topimage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/UpimageView"
                 android:scaleType="centerCrop"
+                android:src="@drawable/dog"
+                android:visibility="visible"
                 />
 
         </ScrollView>
@@ -60,18 +61,22 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4.5"
-        android:layout_margin="15dp"
+        android:padding="15dp"
         >
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
+                android:id="@+id/bottomimage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/bottomimageView"
+                android:src="@drawable/dog"
                 android:scaleType="centerCrop"
+                android:visibility="gone"
                 />
+
         </ScrollView>
     </LinearLayout>
 </LinearLayout>
