@@ -10,6 +10,7 @@ public class BasicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Log.e("Start","BasicOncreate() 호출");
         setContentView(R.layout.activity_basic);
     }
