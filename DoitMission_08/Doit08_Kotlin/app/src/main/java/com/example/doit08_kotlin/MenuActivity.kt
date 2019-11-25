@@ -14,7 +14,6 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-
         custom.setOnClickListener {
             val intent = Intent(this,CustomActivity::class.java)
             intent.putExtra("data",custom.text)
@@ -36,6 +35,7 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        setResult(0,intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
