@@ -29,10 +29,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/age"
         android:inputType="number"
+        android:maxLength="3"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:hint="나이 입력"
         />
+
 
     <Button
         android:layout_width="wrap_content"
