@@ -36,6 +36,7 @@ class MenuActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         setResult(0,intent)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
