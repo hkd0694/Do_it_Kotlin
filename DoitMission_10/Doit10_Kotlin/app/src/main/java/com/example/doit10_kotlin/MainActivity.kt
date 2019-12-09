@@ -1,6 +1,7 @@
 package com.example.doit10_kotlin
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.view.GravityCompat
@@ -11,15 +12,58 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        viewpager.offscreenPageLimit = 3
+
+        val myPagerAdapter = MyPagerAdapter(supportFragmentManager,3)
+        viewpager.adapter = myPagerAdapter
+
+
+        viewpager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                Log.e("Start","okok")
+                bottomNavigationView.menu.getItem(position).isChecked = true
+            }
+        })
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(object : BottomNavigationView.OnNavigationItemSelectedListener{
+            override fun onNavigationItemSelected(menu: MenuItem): Boolean {
+
+                when(menu.itemId){
+                    R.id.tab1 -> {
+                        viewpager.currentItem = 0
+                        return true
+                    }
+                    R.id.tab2 -> {
+                        viewpager.currentItem = 1
+                        return true
+                    }
+                    R.id.tab3 -> {
+                        viewpager.currentItem = 2
+                        return true
+                    }
+                }
+              return false
+            }
+        })
 
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -49,9 +93,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
