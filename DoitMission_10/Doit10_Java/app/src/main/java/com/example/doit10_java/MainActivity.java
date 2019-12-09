@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,9 +23,6 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager pager;
-    private EmailFragment emailFragment;
-    private InfoFragment infoFragment;
-    private MapFragment mapFragment;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onPageSelected(int position) {
                 Log.e("Start","페이지 이동" + position);
-                navigationView.getMenu().getItem(position).setCheckable(true);
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
 
             @Override
