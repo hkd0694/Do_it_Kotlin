@@ -3,7 +3,9 @@ package com.example.doit12_java;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +16,19 @@ public class MainActivity extends AppCompatActivity {
     public static final String name = "NAME";
     public static final String message = "MESSGAE";
 
+    private TextReceiver textReceiver = new TextReceiver();
+
     private Button btn;
     private EditText edit;
     private TextView text;
+
+    @Override
+    protected void onResume() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("BroadCast");
+        registerReceiver(textReceiver,intentFilter);
+        super.onResume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +61,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void process(Intent intent){
-        if(intent != null){
-
+        if(intent.getStringExtra(message) != null){
+            text.setText(intent.getStringExtra(message));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(textReceiver);
+        super.onDestroy();
     }
 }
