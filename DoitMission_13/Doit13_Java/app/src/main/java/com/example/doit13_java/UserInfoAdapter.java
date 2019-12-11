@@ -1,7 +1,7 @@
 package com.example.doit13_java;
 
-
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,25 +9,44 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.ViewHolder> {
 
+    private ArrayList<Data> arrayList = null;
+    private Context context;
+
+    public UserInfoAdapter(Context context, ArrayList<Data> arrayList){
+        this.context = context;
+        this.arrayList = arrayList;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.user_list_item,parent,false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Data data = arrayList.get(position);
+        holder.user_name.setText(data.getName());
+        holder.user_birthday.setText(data.getBirthday());
+        holder.user_tele.setText(data.getTelt());
+    }
 
+    public void addItem(Data data) {
+        arrayList.add(data);
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
